@@ -19,12 +19,12 @@ EOT
     name                    = string
     resource_group_name     = string
     is_global               = optional(bool)
-    field = object({
+    field = list(object({
       is_encrypted = optional(bool)
       is_optional  = optional(bool)
       name         = string
       type         = string
-    })
+    }))
   }))
 }
 

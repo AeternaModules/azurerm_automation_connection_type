@@ -6,11 +6,14 @@ resource "azurerm_automation_connection_type" "automation_connection_types" {
   resource_group_name     = each.value.resource_group_name
   is_global               = each.value.is_global
 
-  field {
-    is_encrypted = each.value.field.is_encrypted
-    is_optional  = each.value.field.is_optional
-    name         = each.value.field.name
-    type         = each.value.field.type
+  dynamic "field" {
+    for_each = each.value.field
+    content {
+      is_encrypted = field.value.is_encrypted
+      is_optional  = field.value.is_optional
+      name         = field.value.name
+      type         = field.value.type
+    }
   }
 }
 
