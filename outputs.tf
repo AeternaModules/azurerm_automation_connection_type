@@ -1,3 +1,7 @@
+output "automation_connection_types_id" {
+  description = "Map of id values across all automation_connection_types, keyed the same as var.automation_connection_types"
+  value       = { for k, v in azurerm_automation_connection_type.automation_connection_types : k => v.id }
+}
 output "automation_connection_types_automation_account_name" {
   description = "Map of automation_account_name values across all automation_connection_types, keyed the same as var.automation_connection_types"
   value       = { for k, v in azurerm_automation_connection_type.automation_connection_types : k => v.automation_account_name }
