@@ -26,5 +26,13 @@ EOT
       type         = string
     }))
   }))
+  validation {
+    condition = alltrue([
+      for k, v in var.automation_connection_types : (
+        length(v.field) >= 1
+      )
+    ])
+    error_message = "Each field list must contain at least 1 items"
+  }
 }
 
